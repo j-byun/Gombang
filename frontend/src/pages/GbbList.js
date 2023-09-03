@@ -16,9 +16,13 @@ const GbbList = ({ imageList }) => {
 
     useEffect(() => {
         const member = JSON.parse(sessionStorage.getItem("member"));
+        if (!member || !member.id) {
+            navigate("/login");
+            return; 
+        }
         const useruuid = member.id;
         setUserid(useruuid);
-    }, [setUserid]);
+    }, [setUserid,navigate]);
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_ROOT}/showroom`
@@ -35,7 +39,7 @@ const GbbList = ({ imageList }) => {
             "memberId": userid,
             "searchWord": searchText,
             "searchType": 'station',
-            "hashTag": selectedTags,
+            "hashTag": selectedTags.join(' '),
             "sortType": 'desc',
             "pageOffset": 0
         }
@@ -127,6 +131,9 @@ const GbbList = ({ imageList }) => {
     const handleDeleteTag = (id) => {
         setSelectedTags(selectedTags.filter((_, index) => index !== id));
     };
+    function handlegotoDetail(id) {
+        navigate(`/gbblist/${id}`)
+    }
 
     return (
         <div>
@@ -154,7 +161,7 @@ const GbbList = ({ imageList }) => {
                                 setSearchText(event.target.value)
                             }
                             onKeyDown={handleKeyPress}
-                            placeholder="보고 싶은 지역을 입력하세요"
+                            placeholder = {searchText ? ({searchText}) : ("보고 싶은 지역을 입력하세요")}
                         />
                         <div className={gbbListStyles.gbbXBtnDiv}>
                             <button className={gbbListStyles.gbbXBtn} onClick={() => handleXClick()}>X</button>
@@ -217,6 +224,7 @@ const GbbList = ({ imageList }) => {
                                     src={value.thumbnail}
                                     alt={`${value}-${id}`}
                                     className={gbbListStyles.showRoomImg}
+                                    onClick={() => handlegotoDetail(value.id)}
                                 />
                                 {
                                     value.checkLike ?
