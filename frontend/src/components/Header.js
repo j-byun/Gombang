@@ -71,6 +71,7 @@ const Header = () => {
 		});
 	});
 
+
 	function handleLogout() {
 		setIsAuthorized(false);
 		sessionStorage.removeItem("isAuthorized");
@@ -128,6 +129,7 @@ const Header = () => {
 								alt="noImage"
 								className={styles.rightTabImg}
 							/>
+
 						</div>
 					</>
 				) : (

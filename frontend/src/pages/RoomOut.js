@@ -14,6 +14,7 @@ export default function Roomout() {
   const navigate = useNavigate();
 
   const [userid, setUserid] = useState("");
+  const [roomid, setRoomid] = useState("");
   useEffect(() => {
     const member = JSON.parse(sessionStorage.getItem("member"));
     if (!member || !member.id) {
