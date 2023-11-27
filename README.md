@@ -1,4 +1,5 @@
-![logo_eng](https://github.com/j-byun/Gombang/assets/122416904/88c6a4d4-e68f-4d66-bef8-a23989f35393)
+![곰방목업당선 (1)](https://github.com/j-byun/gombang/assets/122416904/19d693aa-63b2-4349-827b-abbaeeca03c2)
+
 
 <br><br>
 
